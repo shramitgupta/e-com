@@ -58,6 +58,21 @@ class SignupScreen extends StatelessWidget {
     );
   }
 
+  Widget buildSocialButton(
+      {required Widget child, required Function onPressed}) {
+    return MaterialButton(
+      onPressed: onPressed(),
+      shape: OutlineInputBorder(
+        borderSide: BorderSide(
+          width: 0.5,
+          color: AppColors.baseGrey40Color,
+        ),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: child,
+    );
+  }
+
   Widget buildBottomPart() {
     return Container(
       height: 300,
@@ -76,21 +91,46 @@ class SignupScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Material(
-                  shape: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 0.5,
-                      color: AppColors.baseGrey40Color,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
+                buildSocialButton(
+                  onPressed: () {},
                   child: SvgPicture.asset(
                     SvgImages.facebook,
                     color: AppColors.baseBlackColor,
                     width: 45,
                   ),
                 ),
+                buildSocialButton(
+                  onPressed: () {},
+                  child: SvgPicture.asset(
+                    SvgImages.google,
+                    color: AppColors.baseBlackColor,
+                    width: 45,
+                  ),
+                ),
+                buildSocialButton(
+                  onPressed: () {},
+                  child: SvgPicture.asset(
+                    SvgImages.twitter,
+                    color: AppColors.baseBlackColor,
+                    width: 45,
+                  ),
+                ),
               ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(20.0),
+            child: MaterialButton(
+              onPressed: () {},
+              color: AppColors.baseGrey10Color,
+              height: 55,
+              elevation: 0,
+              child: Center(
+                child: Text(
+                  "Sign up",
+                  style: SignupScreenStylies.signUpButtonTextStyle,
+                ),
+              ),
             ),
           ),
         ],

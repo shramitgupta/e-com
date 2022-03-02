@@ -20,4 +20,8 @@ class SignupScreenStylies {
   static const TextStyle signInSocialStyle = TextStyle(
     color: AppColors.baseBlackColor,
   );
+  static const TextStyle signUpButtonTextStyle = TextStyle(
+    color: AppColors.baseBlackColor,
+    fontSize: 20,
+  );
 }
