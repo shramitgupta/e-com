@@ -33,47 +33,22 @@ class LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                child: MaterialButton(
-                  color: Colors.black,
-                  height: 45,
-                  elevation: 0,
-                  shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide.none,
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    "Sign in",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  ),
+                child: MyButtonWidget(
+                  text: "Sign in",
+                  color: AppColors.baseBlackColor,
+                  onPress: () {},
                 ),
-                // MyButtonWidget("Sign in", AppColors.baseBlackColor, () {}),
               ),
               SizedBox(
                 width: 20,
               ),
               Expanded(
-                child: MaterialButton(
+                child: MyButtonWidget(
+                  text: "Sign up",
                   color: AppColors.baseDarkPinkColor,
-                  height: 45,
-                  elevation: 0,
-                  shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide.none,
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    "Log in",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  ),
+                  onPress: () {},
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -81,7 +56,7 @@ class LoginScreenState extends State<LoginScreen> {
           height: 20,
         ),
         Text(
-          "Forgot passward?",
+          "Forgot password?",
           style: LoginScreenStylies.forgotPasswordStylies,
         ),
       ],
@@ -159,6 +134,25 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(20),
+            child: MaterialButton(
+              color: AppColors.baseGrey10Color,
+              height: 55,
+              elevation: 0,
+              shape: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Center(
+                child: Text(
+                  "Sign up",
+                  style: LoginScreenStylies.signupButtonTextStylies,
+                ),
+              ),
+              onPressed: () {},
             ),
           ),
         ],
