@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/appColors/app_colors.dart';
+import 'package:flutter_application_1/routes/routes.dart';
+import 'package:flutter_application_1/screens/signup/signup_screen.dart';
 import 'package:flutter_application_1/stylies/login_screen_stylies.dart';
 import 'package:flutter_application_1/svgimages/svg_images.dart';
 import 'package:flutter_application_1/widgets/my_textfromfield_widget.dart';
@@ -46,7 +48,10 @@ class LoginScreenState extends State<LoginScreen> {
                 child: MyButtonWidget(
                   text: "Sign up",
                   color: AppColors.baseDarkPinkColor,
-                  onPress: () {},
+                  onPress: () {
+                    PageRouting.goToNextPage(
+                        context: context, navigateTo: SignupScreen());
+                  },
                 ),
               ),
             ],
@@ -77,7 +82,7 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget buildBottomPart() {
+  Widget buildBottomPart({required BuildContext context}) {
     return Container(
       height: 300,
       child: Column(
@@ -152,7 +157,10 @@ class LoginScreenState extends State<LoginScreen> {
                   style: LoginScreenStylies.signupButtonTextStylies,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                PageRouting.goToNextPage(
+                    context: context, navigateTo: SignupScreen());
+              },
             ),
           ),
         ],
@@ -172,7 +180,7 @@ class LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   buildTopPart(),
-                  buildBottomPart(),
+                  buildBottomPart(context: context),
                 ],
               )
             ],
