@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/appColors/app_colors.dart';
 import 'package:flutter_application_1/routes/routes.dart';
+import 'package:flutter_application_1/screens/homepage/home_page.dart';
 import 'package:flutter_application_1/screens/signup/signup_screen.dart';
 import 'package:flutter_application_1/stylies/login_screen_stylies.dart';
 import 'package:flutter_application_1/svgimages/svg_images.dart';
@@ -35,10 +36,24 @@ class LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                child: MyButtonWidget(
-                  text: "Login",
-                  color: AppColors.baseBlackColor,
-                  onPress: () {},
+                child: MaterialButton(
+                  color: AppColors.baseGrey10Color,
+                  height: 55,
+                  elevation: 0,
+                  shape: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Login",
+                      style: LoginScreenStylies.signupButtonTextStylies,
+                    ),
+                  ),
+                  onPressed: () {
+                    PageRouting.goToNextPage(
+                        context: context, navigateTo: HomePage());
+                  },
                 ),
               ),
               SizedBox(
@@ -152,7 +167,6 @@ class LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-
         ],
       ),
     );

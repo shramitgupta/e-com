@@ -1,7 +1,4 @@
-// import 'dart:html';
-
 import 'package:flutter/material.dart';
-
 class MyTextFromField extends StatelessWidget {
   final String hintText;
   bool obscureText = false;
