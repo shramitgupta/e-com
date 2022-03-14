@@ -36,7 +36,7 @@ class LoginScreenState extends State<LoginScreen> {
             children: [
               Expanded(
                 child: MyButtonWidget(
-                  text: "Sign in",
+                  text: "Login",
                   color: AppColors.baseBlackColor,
                   onPress: () {},
                 ),
@@ -45,10 +45,21 @@ class LoginScreenState extends State<LoginScreen> {
                 width: 20,
               ),
               Expanded(
-                child: MyButtonWidget(
-                  text: "Sign up",
-                  color: AppColors.baseDarkPinkColor,
-                  onPress: () {
+                child: MaterialButton(
+                  color: AppColors.baseGrey10Color,
+                  height: 55,
+                  elevation: 0,
+                  shape: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Sign up",
+                      style: LoginScreenStylies.signupButtonTextStylies,
+                    ),
+                  ),
+                  onPressed: () {
                     PageRouting.goToNextPage(
                         context: context, navigateTo: SignupScreen());
                   },
@@ -141,28 +152,7 @@ class LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.all(20),
-            child: MaterialButton(
-              color: AppColors.baseGrey10Color,
-              height: 55,
-              elevation: 0,
-              shape: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Center(
-                child: Text(
-                  "Sign up",
-                  style: LoginScreenStylies.signupButtonTextStylies,
-                ),
-              ),
-              onPressed: () {
-                PageRouting.goToNextPage(
-                    context: context, navigateTo: SignupScreen());
-              },
-            ),
-          ),
+
         ],
       ),
     );
