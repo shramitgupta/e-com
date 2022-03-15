@@ -1,3 +1,6 @@
 {
-    "cmake.sourceDirectory": "${workspaceFolder}/windows"
+    "cmake.sourceDirectory": "${workspaceFolder}/windows",
+    "dart.flutterAdditionalArgs": [
+        "--no-sound-null-safety"
+    ]
 }
