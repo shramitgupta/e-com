@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/appColors/app_colors.dart';
 import 'package:flutter_application_1/data/home_page_data.dart';
 import 'package:flutter_application_1/models/SingleProductModel.dart';
+import 'package:flutter_application_1/routes/routes.dart';
+import 'package:flutter_application_1/screens/detailscreen/detail_screen.dart';
+import 'package:flutter_application_1/screens/tabbar/tabbar_data.dart';
 import 'package:flutter_application_1/stylies/home_screen_styles.dart';
 import 'package:flutter_application_1/svgimages/svg_images.dart';
 import 'package:flutter_application_1/widgets/show_all_widget.dart';
@@ -208,7 +211,15 @@ class HomePage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var data = sigleProductData[index];
                         return SingleProductWidget(
-                          onPressed: () {},
+                          onPressed: () {
+                            PageRouting.goToNextPage(
+                              context: context,
+                              navigateTo: DetailScreen(
+                                data: data,
+                              ),
+                            );
+                            print("Hello I am clicked.");
+                          },
                           productImage: data.productImage,
                           productModel: data.productModel,
                           productName: data.productName,
@@ -245,11 +256,46 @@ class HomePage extends StatelessWidget {
                   productName: 'Classics mesh tank top',
                   productPrice: 15,
                 ),
+                ShowAllWidget(leftText: "History"),
+                Container(
+                  height: 240,
+                  child: GridView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    primary: true,
+                    itemCount: sigleProductData.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: 1.5,
+                    ),
+                    itemBuilder: (context, index) {
+                      var data = sigleProductData[index];
+                      return SingleProductWidget(
+                        onPressed: () {
+                          PageRouting.goToNextPage(
+                              context: context,
+                              navigateTo: DetailScreen(data: data));
+                        },
+                        productImage: data.productImage,
+                        productModel: data.productModel,
+                        productName: data.productName,
+                        productOldPrice: data.productOldPrice,
+                        productPrice: data.productPrice,
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
-            Center(child: Text("2Page")),
-            Center(child: Text("3Page")),
-            Center(child: Text("4Page")),
+            TabBarBar(
+              productData: colothsData,
+            ),
+            TabBarBar(
+              productData: shoesData,
+            ),
+            TabBarBar(
+              productData: accessoriesData,
+            ),
           ],
         ),
       ),

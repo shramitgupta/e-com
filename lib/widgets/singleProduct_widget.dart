@@ -20,7 +20,7 @@ class SingleProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => onPressed(),
       child: Container(
         margin: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
