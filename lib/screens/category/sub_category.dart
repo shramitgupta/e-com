@@ -1,4 +1,4 @@
-import 'package:custom_navigator/custom_navigation.dart';
+//import 'package:custom_navigator/custom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_application_1/appColors/app_colors.dart';
