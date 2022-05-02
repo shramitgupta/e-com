@@ -99,7 +99,6 @@ class _WishListScreenState extends State<WishListScreen> {
                 ],
               ),
             ),
-            
           ],
         ),
       ),
@@ -143,74 +142,67 @@ class _WishListScreenState extends State<WishListScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(child: 
-            Container(
-              height: 55,
-              margin: EdgeInsets.all(10.0),
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  shape: BeveledRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-
+            Expanded(
+              child: Container(
+                height: 55,
+                margin: EdgeInsets.all(10.0),
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    primary: AppColors.baseGrey80Color,
+                    onSurface: Colors.grey,
                   ),
-                  primary: AppColors.baseGrey80Color,
-                  onSurface: Colors.grey,
+                  icon: SvgPicture.asset(
+                    SvgImages.delete,
+                    color: AppColors.baseWhiteColor,
+                    width: 30,
+                  ),
+                  label: Text(
+                    "remove",
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: AppColors.baseWhiteColor,
+                    ),
+                  ),
+                  onLongPress: () {},
+                  onPressed: () {},
                 ),
-                icon: SvgPicture.asset(
-                  SvgImages.delete,
-                  color: AppColors.baseWhiteColor,
-                  width: 30,
-
-                ),
-                label: Text("remove",
-                style: TextStyle(
-                  fontSize: 25,
-                  color: AppColors.baseWhiteColor,
-
-                ),
-                ),
-                onLongPress: (){}, onPressed: () {  },
-
               ),
             ),
-            ),
-              Expanded(child: 
-            Container(
-              height: 55,
-              margin: EdgeInsets.all(10.0),
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  shape: BeveledRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-
+            Expanded(
+              child: Container(
+                height: 55,
+                margin: EdgeInsets.all(10.0),
+                child: ElevatedButton.icon(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    primary: AppColors.baseDarkPinkColor,
+                    onSurface: Colors.grey,
                   ),
-                  primary: AppColors.baseDarkPinkColor,
-                  onSurface: Colors.grey,
+                  icon: SvgPicture.asset(
+                    SvgImages.shoppingCart,
+                    color: AppColors.baseWhiteColor,
+                    width: 30,
+                  ),
+                  label: Text(
+                    "buy now",
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: AppColors.baseWhiteColor,
+                    ),
+                  ),
+                  onLongPress: () {},
                 ),
-                icon: SvgPicture.asset(
-                  SvgImages.shoppingCart,
-                  color: AppColors.baseWhiteColor,
-                  width: 30,
-
-                ),
-                label: Text("buy now",
-                style: TextStyle(
-                  fontSize: 22,
-                  color: AppColors.baseWhiteColor,
-
-                ),
-                ),
-                onLongPress: (){},
-
               ),
-            ),
             )
-            
-
-
           ],
         ),
-        ),
+      ),
       appBar: buildAppBar(),
       body: ListView(
         physics: BouncingScrollPhysics(),
@@ -229,7 +221,6 @@ class _WishListScreenState extends State<WishListScreen> {
                 buildSingleBag(),
                 buildSingleBag(),
                 buildSingleBag(),
-
               ],
             ),
           )
