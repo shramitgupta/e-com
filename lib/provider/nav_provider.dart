@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/category/category_screen.dart';
 import 'package:flutter_application_1/screens/homepage/home_page.dart';
+import 'package:flutter_application_1/screens/profilescreen/profile_screen.dart';
+import 'package:flutter_application_1/screens/wishList/wish_list_screen.dart';
 import 'package:flutter_application_1/screens/yourbag/your_bag_screen.dart';
 
 class NavbarViewModel with ChangeNotifier {
@@ -10,6 +12,8 @@ class NavbarViewModel with ChangeNotifier {
     HomePage(),
     CategoryScreen(),
     YourBagScreen(),
+    WishListScreen(),
+    ProfileScreen(),
   ];
 
   int get getIndex => _navIndex;
