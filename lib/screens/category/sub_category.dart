@@ -8,7 +8,6 @@ import 'package:flutter_application_1/screens/detailscreen/detail_screen.dart';
 import 'package:flutter_application_1/stylies/sub_category_stylies.dart';
 import 'package:flutter_application_1/svgimages/svg_images.dart';
 import 'package:flutter_application_1/widgets/singleProduct_widget.dart';
-import 'package:flutter_application_1/widgets/toggle_button_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SubCategory extends StatefulWidget {
@@ -25,32 +24,55 @@ class SubCategory extends StatefulWidget {
 }
 
 class _SubCategoryState extends State<SubCategory> {
-  AppBar buildAppBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: Colors.transparent,
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: RotationTransition(
-            turns: AlwaysStoppedAnimation(90 / 360),
-            child: SvgPicture.asset(
-              SvgImages.filter,
-              color: AppColors.baseBlackColor,
-              width: 35,
-            ),
-          ),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: SvgPicture.asset(
-            SvgImages.search,
-            color: AppColors.baseBlackColor,
-            width: 35,
-          ),
-        ),
-      ],
-    );
+  int isSelect = 1;
+
+  List<bool> isSelected = [true, false, false];
+  FocusNode focusNodeButton1 = FocusNode();
+  FocusNode focusNodeButton2 = FocusNode();
+  FocusNode focusNodeButton3 = FocusNode();
+  late List<FocusNode> focusToggle;
+
+  onTogglePressed(index) {
+    if (index == 0) {
+      setState(() {
+        isSelect = 1;
+      });
+    } else if (index == 1) {
+      setState(() {
+        isSelect = 2;
+      });
+    } else if (index == 2) {
+      setState(() {
+        isSelect = 3;
+      });
+    }
+    setState(() {
+      for (int buttonIndex = 0;
+          buttonIndex < isSelected.length;
+          buttonIndex++) {
+        if (buttonIndex == index) {
+          isSelected[buttonIndex] = true;
+        } else {
+          isSelected[buttonIndex] = false;
+        }
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    focusToggle = [focusNodeButton1, focusNodeButton2, focusNodeButton3];
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    focusNodeButton1.dispose();
+    focusNodeButton2.dispose();
+    focusNodeButton3.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -104,7 +126,7 @@ class _SubCategoryState extends State<SubCategory> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        ToggleButtonWidget(),
+                        buildToggleButtons()
                       ],
                     ),
                   ),
@@ -117,7 +139,21 @@ class _SubCategoryState extends State<SubCategory> {
                 primary: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, childAspectRatio: 0.8),
+                  crossAxisCount: isSelect == 1
+                      ? 2
+                      : isSelect == 2
+                          ? 1
+                          : isSelect == 3
+                              ? 1
+                              : 2,
+                  childAspectRatio: isSelect == 1
+                      ? 0.7
+                      : isSelect == 2
+                          ? 1.5
+                          : isSelect == 3
+                              ? 0.8
+                              : 0.7,
+                ),
                 itemBuilder: (context, index) {
                   var data = widget.productData[index];
                   return SingleProductWidget(
@@ -143,4 +179,62 @@ class _SubCategoryState extends State<SubCategory> {
       ]),
     );
   }
+
+  ToggleButtons buildToggleButtons() {
+    return ToggleButtons(
+                        borderWidth: 0,
+                        focusColor: null,
+                        fillColor: Colors.transparent,
+                        selectedColor: AppColors.baseDarkPinkColor,
+                        disabledColor: AppColors.baseBlackColor,
+                        selectedBorderColor: Colors.transparent,
+                        focusNodes: focusToggle,
+                        children: [
+                          Icon(
+                            Icons.grid_view,
+                            size: 25,
+                          ),
+                          Icon(
+                            Icons.view_agenda_outlined,
+                            size: 25,
+                          ),
+                          Icon(
+                            Icons.crop_square_sharp,
+                            size: 25,
+                          ),
+                        ],
+                        onPressed: (int index) {
+                          onTogglePressed(index);
+                        },
+                        isSelected: isSelected,
+                      );
+  }
+}
+
+AppBar buildAppBar() {
+  return AppBar(
+    elevation: 0,
+    backgroundColor: Colors.transparent,
+    actions: [
+      IconButton(
+        onPressed: () {},
+        icon: RotationTransition(
+          turns: AlwaysStoppedAnimation(90 / 360),
+          child: SvgPicture.asset(
+            SvgImages.filter,
+            color: AppColors.baseBlackColor,
+            width: 35,
+          ),
+        ),
+      ),
+      IconButton(
+        onPressed: () {},
+        icon: SvgPicture.asset(
+          SvgImages.search,
+          color: AppColors.baseBlackColor,
+          width: 35,
+        ),
+      ),
+    ],
+  );
 }

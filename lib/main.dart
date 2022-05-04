@@ -4,6 +4,7 @@ import 'package:flutter_application_1/mybottombar/my_bottom_bar.dart';
 import 'package:flutter_application_1/provider/nav_provider.dart';
 // import 'package:flutter_application_1/screens/loginScreens/login_Screen.dart';
 import 'package:flutter_application_1/screens/loginScreens/login_screen.dart';
+import 'package:flutter_application_1/screens/payment/payment_screen.dart';
 import 'package:flutter_application_1/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
               )),
               primarySwatch: Colors.blue,
             ),
+            //home: MyBottomBar(),
             home: LoginScreen()));
   }
 }

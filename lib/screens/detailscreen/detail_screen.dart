@@ -4,6 +4,7 @@ import 'package:flutter_application_1/appColors/app_colors.dart';
 import 'package:flutter_application_1/data/detail_screen_data.dart';
 import 'package:flutter_application_1/models/SingleProductModel.dart';
 import 'package:flutter_application_1/routes/routes.dart';
+import 'package:flutter_application_1/screens/sizeguide/size_guide_screen.dart';
 import 'package:flutter_application_1/stylies/detail_screen_stylies.dart';
 import 'package:flutter_application_1/svgimages/svg_images.dart';
 import 'package:flutter_application_1/widgets/drop_button_widget.dart';
@@ -295,7 +296,12 @@ class _DetailScreenState extends State<DetailScreen> {
                               ),
                               minWidth: double.infinity,
                               color: AppColors.basewhite60Color,
-                              onPressed: () {},
+                              onPressed: () {
+                                PageRouting.goToNextPage(
+                                  context: context,
+                                  navigateTo: SizeGuideScreen(),
+                                );
+                              },
                             )
                           ],
                         ),

@@ -5,15 +5,17 @@ import 'package:flutter_application_1/data/home_page_data.dart';
 import 'package:flutter_application_1/models/SingleProductModel.dart';
 import 'package:flutter_application_1/routes/routes.dart';
 import 'package:flutter_application_1/screens/detailscreen/detail_screen.dart';
+import 'package:flutter_application_1/screens/filter/filterScreen.dart';
 import 'package:flutter_application_1/screens/tabbar/tabbar_data.dart';
 import 'package:flutter_application_1/stylies/home_screen_styles.dart';
 import 'package:flutter_application_1/svgimages/svg_images.dart';
 import 'package:flutter_application_1/widgets/show_all_widget.dart';
 import 'package:flutter_application_1/widgets/singleProduct_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_application_1/screens/filter/filterScreen.dart';
 
 class HomePage extends StatelessWidget {
-  AppBar buildAppBar() {
+  AppBar buildAppBar(BuildContext context) {
     return AppBar(
       bottom: TabBar(
         labelPadding: EdgeInsets.symmetric(horizontal: 22),
@@ -63,7 +65,10 @@ class HomePage extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            PageRouting.goToNextPage(
+                context: context, navigateTo: FilterScreen());
+          },
           icon: SvgPicture.asset(
             SvgImages.search,
             color: AppColors.baseBlackColor,
@@ -185,7 +190,7 @@ class HomePage extends StatelessWidget {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        appBar: buildAppBar(),
+        appBar: buildAppBar(context),
         body: TabBarView(
           children: [
             ListView(

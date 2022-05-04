@@ -1,8 +1,9 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/appColors/app_colors.dart';
+import 'package:flutter_application_1/routes/routes.dart';
 import 'package:flutter_application_1/screens/detailscreen/detail_screen.dart';
+import 'package:flutter_application_1/screens/payment/payment_screen.dart';
 import 'package:flutter_application_1/stylies/detail_screen_stylies.dart';
 import 'package:flutter_application_1/svgimages/svg_images.dart';
 import 'package:flutter_application_1/widgets/my_button_widget.dart';
@@ -16,9 +17,9 @@ class YourBagScreen extends StatefulWidget {
 }
 
 class _YourBagScreenState extends State<YourBagScreen> {
-  String sizeController="";
-  String colorsController="";
-  String quantityController="";
+  String sizeController = "";
+  String colorsController = "";
+  String quantityController = "";
   AppBar buildAppBar() {
     return AppBar(
       backgroundColor: Colors.transparent,
@@ -133,102 +134,102 @@ class _YourBagScreenState extends State<YourBagScreen> {
                 ],
               ),
             ),
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        fillColor: AppColors.baseWhiteColor,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      hint: Text(
-                        "Size",
-                        style: DetailScreenStylies.productDropDownValueStyle,
-                      ),
-                      value: sizeController,
-                      items: ["M", "L", "S", "SM"]
-                          .map(
-                            (e) => DropdownMenuItem(
-                              child: Text(e),
-                              value: e,
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (String? value) {
-                        setState(() {
-                          sizeController = value!;
-                        });
-                      },
-                    ),
-                  ),
-                  Expanded(
-                    child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        fillColor: AppColors.baseWhiteColor,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      hint: Text(
-                        "Colors",
-                        style: DetailScreenStylies.productDropDownValueStyle,
-                      ),
-                      value: colorsController,
-                      items: ["Red", "Green", "Blue", "Pink"]
-                          .map(
-                            (e) => DropdownMenuItem(
-                              child: Text(e),
-                              value: e,
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (String? value) {
-                        setState(() {
-                          colorsController = value!;
-                        });
-                      },
-                    ),
-                  ),
-                  Expanded(
-                    child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        fillColor: AppColors.baseWhiteColor,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      hint: Text(
-                        "Quantity",
-                        style: DetailScreenStylies.productDropDownValueStyle,
-                      ),
-                      value: quantityController,
-                      items: ["1", "2", "3", "4", "5"]
-                          .map(
-                            (e) => DropdownMenuItem(
-                              child: Text(e),
-                              value: e,
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (String? value) {
-                        setState(() {
-                          quantityController = value!;
-                        });
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Expanded(
+            //   child: Row(
+            //     children: [
+            //       Expanded(
+            //         child: DropdownButtonFormField<String>(
+            //           decoration: InputDecoration(
+            //             fillColor: AppColors.baseWhiteColor,
+            //             filled: true,
+            //             border: OutlineInputBorder(
+            //               borderSide: BorderSide.none,
+            //               borderRadius: BorderRadius.circular(10.0),
+            //             ),
+            //           ),
+            //           hint: Text(
+            //             "Size",
+            //             style: DetailScreenStylies.productDropDownValueStyle,
+            //           ),
+            //           value: sizeController,
+            //           items: ["M", "L", "S", "SM"]
+            //               .map(
+            //                 (e) => DropdownMenuItem(
+            //                   child: Text(e),
+            //                   value: e,
+            //                 ),
+            //               )
+            //               .toList(),
+            //           onChanged: (String? value) {
+            //             setState(() {
+            //               sizeController = value!;
+            //             });
+            //           },
+            //         ),
+            //       ),
+            //       Expanded(
+            //         child: DropdownButtonFormField<String>(
+            //           decoration: InputDecoration(
+            //             fillColor: AppColors.baseWhiteColor,
+            //             filled: true,
+            //             border: OutlineInputBorder(
+            //               borderSide: BorderSide.none,
+            //               borderRadius: BorderRadius.circular(10.0),
+            //             ),
+            //           ),
+            //           hint: Text(
+            //             "Colors",
+            //             style: DetailScreenStylies.productDropDownValueStyle,
+            //           ),
+            //           value: colorsController,
+            //           items: ["Red", "Green", "Blue", "Pink"]
+            //               .map(
+            //                 (e) => DropdownMenuItem(
+            //                   child: Text(e),
+            //                   value: e,
+            //                 ),
+            //               )
+            //               .toList(),
+            //           onChanged: (String? value) {
+            //             setState(() {
+            //               colorsController = value!;
+            //             });
+            //           },
+            //         ),
+            //       ),
+            //       Expanded(
+            //         child: DropdownButtonFormField<String>(
+            //           decoration: InputDecoration(
+            //             fillColor: AppColors.baseWhiteColor,
+            //             filled: true,
+            //             border: OutlineInputBorder(
+            //               borderSide: BorderSide.none,
+            //               borderRadius: BorderRadius.circular(10.0),
+            //             ),
+            //           ),
+            //           hint: Text(
+            //             "Quantity",
+            //             style: DetailScreenStylies.productDropDownValueStyle,
+            //           ),
+            //           value: quantityController,
+            //           items: ["1", "2", "3", "4", "5"]
+            //               .map(
+            //                 (e) => DropdownMenuItem(
+            //                   child: Text(e),
+            //                   value: e,
+            //                 ),
+            //               )
+            //               .toList(),
+            //           onChanged: (String? value) {
+            //             setState(() {
+            //               quantityController = value!;
+            //             });
+            //           },
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -373,7 +374,12 @@ class _YourBagScreenState extends State<YourBagScreen> {
                   child: MyButtonWidget(
                     color: AppColors.baseDarkPinkColor,
                     text: "Checkout",
-                    onPress: () {},
+                    onPress: () {
+                      PageRouting.goToNextPage(
+                        context: context,
+                        navigateTo: PaymentScreen(),
+                      );
+                    },
                   ),
                 ),
               ],

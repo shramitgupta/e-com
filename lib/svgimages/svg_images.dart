@@ -9,5 +9,6 @@ class SvgImages {
   static String delete = "images/Delete.svg";
   static String shoppingCart = "images/cart.svg";
   static String edit = "images/Edit.svg";
-  
+  static String plus = "images/Plus.svg";
+  static String close = "images/Cross.svg";
 }
