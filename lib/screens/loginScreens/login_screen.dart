@@ -5,6 +5,7 @@ import 'package:flutter_application_1/mybottombar/my_bottom_bar.dart';
 import 'package:flutter_application_1/routes/routes.dart';
 import 'package:flutter_application_1/screens/homepage/home_page.dart';
 import 'package:flutter_application_1/screens/signup/signup_screen.dart';
+import 'package:flutter_application_1/screens/socialmedialogin/login_with_google.dart';
 import 'package:flutter_application_1/stylies/login_screen_stylies.dart';
 import 'package:flutter_application_1/svgimages/svg_images.dart';
 import 'package:flutter_application_1/widgets/my_textfromfield_widget.dart';
@@ -145,7 +146,9 @@ class LoginScreenState extends State<LoginScreen> {
                         width: 0.5, color: AppColors.baseGrey40Color),
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    PageRouting.goToNextPage(
+                        context: context, navigateTo: LoginWithGoogle());},
                   child: SvgPicture.asset(
                     SvgImages.google,
                     color: AppColors.baseBlackColor,
