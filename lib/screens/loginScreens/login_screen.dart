@@ -1,4 +1,6 @@
+import 'dart:developer';
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/appColors/app_colors.dart';
 import 'package:flutter_application_1/mybottombar/my_bottom_bar.dart';
@@ -19,6 +21,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
   Widget buildTopPart() {
     return Column(
       children: [
@@ -28,8 +33,8 @@ class LoginScreenState extends State<LoginScreen> {
         ),
         Column(
           children: [
-            MyTextFromField("E-mail", false),
-            MyTextFromField("Password", true),
+            MyTextFromField("E-mail", false, emailController),
+            MyTextFromField("Password", true, passController),
           ],
         ),
         Container(
@@ -52,9 +57,24 @@ class LoginScreenState extends State<LoginScreen> {
                       style: LoginScreenStylies.signupButtonTextStylies,
                     ),
                   ),
-                  onPressed: () {
-                    PageRouting.goToNextPage(
-                        context: context, navigateTo: Navbar());
+                  onPressed: () async {
+                    UserCredential? credential;
+                    try {
+                      credential = await FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: emailController.value.text,
+                              password: passController.value.text);
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == 'user-not-found') {
+                        log('No user found for that email.');
+                      } else if (e.code == 'wrong-password') {
+                        log('Wrong password provided for that user.');
+                      }
+                    }
+                    if (credential?.user != null) {
+                      PageRouting.goToNextPage(
+                          context: context, navigateTo: Navbar());
+                    }
                   },
                 ),
               ),
@@ -148,7 +168,8 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   onPressed: () {
                     PageRouting.goToNextPage(
-                        context: context, navigateTo: LoginWithGoogle());},
+                        context: context, navigateTo: LoginWithGoogle());
+                  },
                   child: SvgPicture.asset(
                     SvgImages.google,
                     color: AppColors.baseBlackColor,

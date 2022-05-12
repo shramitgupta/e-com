@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 class MyTextFromField extends StatelessWidget {
   final String hintText;
   bool obscureText = false;
-  MyTextFromField(this.hintText, this.obscureText);
+  TextEditingController controller;
+  MyTextFromField(this.hintText, this.obscureText, this.controller);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,6 +13,7 @@ class MyTextFromField extends StatelessWidget {
         vertical: 10,
       ),
       child: TextFormField(
+        controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
             fillColor: Colors.grey[100],

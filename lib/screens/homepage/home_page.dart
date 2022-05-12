@@ -1,4 +1,5 @@
 // import 'package:carousel_pro/carousel_pro.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/appColors/app_colors.dart';
 import 'package:flutter_application_1/data/home_page_data.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_application_1/models/SingleProductModel.dart';
 import 'package:flutter_application_1/routes/routes.dart';
 import 'package:flutter_application_1/screens/detailscreen/detail_screen.dart';
 import 'package:flutter_application_1/screens/filter/filterScreen.dart';
+import 'package:flutter_application_1/screens/loginScreens/login_screen.dart';
 import 'package:flutter_application_1/screens/tabbar/tabbar_data.dart';
 import 'package:flutter_application_1/stylies/home_screen_styles.dart';
 import 'package:flutter_application_1/svgimages/svg_images.dart';
@@ -17,6 +19,7 @@ import 'package:flutter_application_1/screens/filter/filterScreen.dart';
 class HomePage extends StatelessWidget {
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
+      
       bottom: TabBar(
         labelPadding: EdgeInsets.symmetric(horizontal: 22),
         indicator: BoxDecoration(
@@ -74,6 +77,14 @@ class HomePage extends StatelessWidget {
             color: AppColors.baseBlackColor,
             width: 30,
           ),
+        ),
+        IconButton(
+          onPressed: () async{
+            await FirebaseAuth.instance.signOut();
+            PageRouting.goToNextPage(
+                context: context, navigateTo: LoginScreen());
+          },
+          icon: Icon(Icons.logout)
         ),
       ],
     );

@@ -226,8 +226,8 @@ class PaymentScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              MyTextFromField("card Holder", false),
-              MyTextFromField("card Number", false),
+              // MyTextFromField("card Holder", false),
+              // MyTextFromField("card Number", false),
               Row(
                 children: [
                   Expanded(

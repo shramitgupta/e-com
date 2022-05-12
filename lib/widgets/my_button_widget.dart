@@ -18,7 +18,9 @@ class MyButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           borderSide: BorderSide.none,
         ),
-        onPressed: onPress(),
+        onPressed: () {
+          onPress();
+        },
         child: Text(
           text,
           style: TextStyle(

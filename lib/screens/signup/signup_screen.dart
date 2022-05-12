@@ -1,14 +1,25 @@
 import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/appColors/app_colors.dart';
+import 'package:flutter_application_1/mybottombar/my_bottom_bar.dart';
+import 'package:flutter_application_1/routes/routes.dart';
 import 'package:flutter_application_1/stylies/signup_screen_stylies.dart';
 import 'package:flutter_application_1/svgimages/svg_images.dart';
 import 'package:flutter_application_1/widgets/my_button_widget.dart';
 import 'package:flutter_application_1/widgets/my_textfromfield_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
   Widget buildTopPart() {
     return Column(
       children: [
@@ -16,17 +27,20 @@ class SignupScreen extends StatelessWidget {
           "images/Logo.png",
           height: 150,
         ),
-        MyTextFromField("Full name", false),
-        MyTextFromField("Email", false),
-        MyTextFromField("Passward", true),
-        MyTextFromField("Confirm Passward", true),
+        // MyTextFromField("Full name", false),
+        MyTextFromField("Email", false, emailController),
+        MyTextFromField("Passward", true, passController),
+        // MyTextFromField("Confirm Passward", true),
         Container(
           margin: EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 10,
           ),
           child: MyButtonWidget(
-            onPress: () {},
+            onPress: () {
+              log("${emailController.value.text} ${passController.value.text}");
+              signUp();
+            },
             color: AppColors.baseDarkPinkColor,
             text: "Create an account",
           ),
@@ -140,5 +154,26 @@ class SignupScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> signUp() async {
+    UserCredential? credential;
+    try {
+      credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.value.text,
+        password: passController.value.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        log('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        log('The account already exists for that email.');
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    if (credential?.user != null) {
+      PageRouting.goToNextPage(context: context, navigateTo: Navbar());
+    }
   }
 }

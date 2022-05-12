@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/mybottombar/my_bottom_bar.dart';
+import 'package:flutter_application_1/routes/routes.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginWithGoogle extends StatefulWidget {
@@ -29,20 +31,21 @@ class _LoginWithGoogleState extends State<LoginWithGoogle> {
                 children: [Text("User Email: "), Text(userEmail)],
               ),
             ),
-            ElevatedButton(onPressed: () async {
-              await signInWithGoogle();
+            ElevatedButton(
+                onPressed: () async {
+                  await signInWithGoogle();
 
-              setState(() {});
-            }, child: Text("Login with google")),
-
-            ElevatedButton(onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              userEmail = "";
-              await GoogleSignIn().signOut();
-              setState(() {
-
-              });
-            }, child: Text("Logout"))
+                  setState(() {});
+                },
+                child: Text("Login with google")),
+            ElevatedButton(
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  userEmail = "";
+                  await GoogleSignIn().signOut();
+                  setState(() {});
+                },
+                child: Text("Logout"))
           ],
         ),
       ),
@@ -52,9 +55,13 @@ class _LoginWithGoogleState extends State<LoginWithGoogle> {
   Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
+      if(googleUser!=null){
+        PageRouting.goToNextPage(
+                        context: context, navigateTo: Navbar());
+      }
     // Obtain the auth details from the request
-    final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser!.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
