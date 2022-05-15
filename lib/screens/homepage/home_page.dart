@@ -7,8 +7,10 @@ import 'package:flutter_application_1/models/SingleProductModel.dart';
 import 'package:flutter_application_1/routes/routes.dart';
 import 'package:flutter_application_1/screens/detailscreen/detail_screen.dart';
 import 'package:flutter_application_1/screens/filter/filterScreen.dart';
+import 'package:flutter_application_1/screens/homepage/upcoming.dart';
 import 'package:flutter_application_1/screens/loginScreens/login_screen.dart';
 import 'package:flutter_application_1/screens/tabbar/tabbar_data.dart';
+import 'package:flutter_application_1/services/firebase_services.dart';
 import 'package:flutter_application_1/stylies/home_screen_styles.dart';
 import 'package:flutter_application_1/svgimages/svg_images.dart';
 import 'package:flutter_application_1/widgets/show_all_widget.dart';
@@ -17,9 +19,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_application_1/screens/filter/filterScreen.dart';
 
 class HomePage extends StatelessWidget {
+  
+
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      
       bottom: TabBar(
         labelPadding: EdgeInsets.symmetric(horizontal: 22),
         indicator: BoxDecoration(
@@ -57,7 +60,9 @@ class HomePage extends StatelessWidget {
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            PageRouting.goToNextPage(context: context, navigateTo: Upcoming());
+          },
           icon: RotationTransition(
             turns: AlwaysStoppedAnimation(90 / 360),
             child: SvgPicture.asset(
@@ -79,13 +84,12 @@ class HomePage extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: () async{
-            await FirebaseAuth.instance.signOut();
-            PageRouting.goToNextPage(
-                context: context, navigateTo: LoginScreen());
-          },
-          icon: Icon(Icons.logout)
-        ),
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              PageRouting.goToNextPage(
+                  context: context, navigateTo: LoginScreen());
+            },
+            icon: Icon(Icons.logout)),
       ],
     );
   }
@@ -195,6 +199,8 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
+ 
 
   @override
   Widget build(BuildContext context) {
