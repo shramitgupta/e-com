@@ -24,7 +24,7 @@ class _SignupScreenState extends State<SignupScreen> {
     return Column(
       children: [
         Image.asset(
-          "images/Logo.png",
+          "images/do.png",
           height: 150,
         ),
         // MyTextFromField("Full name", false),
